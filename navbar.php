@@ -1,3 +1,4 @@
+<!--Done by: Vin Hee-->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -5,11 +6,11 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/bootstrap.bundle.min.js"></script>
-    <title>Souvenir</title>
+    <title>Memorable Gifts</title>
 </head>
 
 <nav class="navbar navbar-expand navbar-dark" style="background-color:#638889">
-  <a class="navbar-brand" href="index.php">Navbar</a>
+  <a class="navbar-brand" href="index.php">Page Icon</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -19,10 +20,7 @@
         <a class="nav-link" href="index.php">Home <span class="sr-only"></span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="Products.php">Products</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
+        <a class="nav-link" href="productCat.php">Categories</a>
       </li>
     </ul>
   </div>

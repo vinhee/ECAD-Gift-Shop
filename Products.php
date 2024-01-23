@@ -1,3 +1,4 @@
+<!--Done by: Vin Hee-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,57 +8,55 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/bootstrap.bundle.min.js"></script>
-    <title>Souvenir:Products</title>
 </head>
 
 <?php
-include("navbar.php")
+include("navbar.php");
 ?>
-
-<body>
-<div class="container text-center" style="padding-top:50px;">
-<h2>Gifts</h2>
-</div>
-
-<div class="container" style="padding-top:20px;">
-    <div class="row justify-content-center">
-        <div class="col-md-4">
-            <div class="card" style="width: 18rem;">
-            <img src="Images/Products/Blissful_Bundle.jpg" class="card-img-top" alt="blissfulbundle">
-                <div class="card-body">
-                    <h5 class="card-title">Blissful Bundle</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">View Product</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card" style="width: 18rem;">
-            <img src="Images/Products/Deluxe_Diaper_Cake_Girl.jpg" class="card-img-top" alt="deluxediapercakegirl">
-                <div class="card-body">
-                    <h5 class="card-title">Deluxe Diaper Girl Cake</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">View Product</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card" style="width: 18rem;">
-            <img src="Images/Products/Springtime_Bloom.jpg" class="card-img-top" alt="springtimebloom">
-                <div class="card-body">
-                    <h5 class="card-title">Springtime Bloom</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">View Product</a>
-                </div>
-            </div>
-        </div>
+<div style="margin:auto;">
+<div class='container text-center' style='padding-top:20px;'>
+    <div class='col-md-12 justify-content-center'>
+        <h2><?php echo "$_GET[catName]"; ?></h2>
     </div>
 </div>
 
-</body>
+<?php
+include("mysqlConn.php");
+$cid=$_GET["cid"]; // Get category ID to get products
+
+$qry = "SELECT p.ProductID, p.ProductTitle, p.ProductImage, p.Price, p.Quantity
+        FROM CatProduct cp INNER JOIN product p ON cp.ProductID=p.ProductID
+		WHERE cp.CategoryID=?" ;
+$stmt = $conn->prepare($qry);
+$stmt->bind_param("i", $cid);
+$stmt->execute();
+$result = $stmt->get_result();
+$stmt->close();
+
+echo "<div class='container' mx-auto style='padding-top:20px; padding-bottom:100px;'>";
+echo "<div class='row justify-content-center'>";
+while($row = $result->fetch_array()) {
+    $product = "productDesc.php?pid=$row[ProductID]"; // Getting Product ID
+	$formattedPrice = number_format($row["Price"],2); // Getting Product Price
+    $img = "$row[ProductImage]"; // Getting Product Image Name
+    $imgPathname = "Images/Products/$img";
+    
+    echo "<div class='col-md-4'>";
+    echo "<div class='card' style='width: 18rem;'>";
+    echo "<img src='$imgPathname' class='card-img-top'>";
+    echo "<div class='card-body text-center'>";
+    echo "<h5 class='card-title'>'$row[ProductTitle]'</h5>";
+    echo "<a href='$product' class='btn btn-primary justify-content-center'>View Product</a>";
+    echo "</div>";
+    echo "</div>";
+    echo "</div>";
+}
+echo "</div>";
+echo "</div>";
+?>
 
 <?php
-include("footer.php")
+include("footer.php");
 ?>
 
 </html>
