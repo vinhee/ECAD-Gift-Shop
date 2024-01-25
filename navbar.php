@@ -24,7 +24,7 @@
         <a class="nav-link" href="productCat.php" style="font-size: 18px;">Categories<span class="sr-only"></span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="#" style="font-size: 18px;">Search<span class="sr-only"></span></a>
+        <a class="nav-link" href="Search.php" style="font-size: 18px;">Search<span class="sr-only"></span></a>
       </li>
     </ul>
   </div>

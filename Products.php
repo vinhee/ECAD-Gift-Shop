@@ -26,14 +26,14 @@ $cid=$_GET["cid"]; // Get category ID to get products
 
 $qry = "SELECT p.ProductID, p.ProductTitle, p.ProductImage, p.Price, p.Quantity
         FROM CatProduct cp INNER JOIN product p ON cp.ProductID=p.ProductID
-		WHERE cp.CategoryID=?" ;
+		WHERE cp.CategoryID=? ORDER BY ProductTitle ASC" ;
 $stmt = $conn->prepare($qry);
 $stmt->bind_param("i", $cid);
 $stmt->execute();
 $result = $stmt->get_result();
 $stmt->close();
 
-echo "<div class='container' mx-auto style='padding-top:20px; padding-bottom:100px;'>";
+echo "<div class='container' mx-auto style='padding-top:20px; padding-bottom:100px; padding-left:60px;'>";
 echo "<div class='row justify-content-center'>";
 while($row = $result->fetch_array()) {
     $product = "productDesc.php?pid=$row[ProductID]"; // Getting Product ID
@@ -46,13 +46,14 @@ while($row = $result->fetch_array()) {
     echo "<img src='$imgPathname' class='card-img-top'>";
     echo "<div class='card-body text-center'>";
     echo "<h5 class='card-title'>'$row[ProductTitle]'</h5>";
-    echo "<a href='$product' class='btn btn-primary justify-content-center'>View Product</a>";
+    echo "<a href='$product' class='btn btn-primary justify-content-center' style='background-color: #C7B7A3;'>View Product</a>";
     echo "</div>";
     echo "</div>";
     echo "</div>";
 }
 echo "</div>";
 echo "</div>";
+$conn->close();
 ?>
 
 <?php

@@ -1,6 +1,6 @@
 <!--Done by: Vin Hee-->
 <?php
-include("header.php")
+include("navbar.php")
 ?>
 
 <div style="margin:auto;">
@@ -13,7 +13,7 @@ include("header.php")
 
 <?php
 include("mysqlConn.php");
-$qry = "SELECT * FROM Category";
+$qry = "SELECT * FROM Category ORDER BY CatName ASC";
 $result = $conn->query($qry);
 
 echo "<div class='container text-center' style='padding-top:100px; padding-bottom:100px;'>";

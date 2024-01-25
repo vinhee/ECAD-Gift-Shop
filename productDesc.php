@@ -1,5 +1,5 @@
 <?php
-include("header.php");
+include("navbar.php");
 ?>
 
 <?php
@@ -54,7 +54,7 @@ while ($row = $result->fetch_array()){
     echo "</div>";
 
     echo "<div class='row-mb-3'>"; // Add to Cart button
-    echo "<a href='#' class='btn btn-primary justify-content-center'>Add to Cart</a>";
+    echo "<a href='#' class='btn btn-primary justify-content-center' style='background-color: #C7B7A3;'>Add to Cart</a>";
     echo "</div>";
 
     echo "</div>";
