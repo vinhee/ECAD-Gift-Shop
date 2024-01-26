@@ -34,6 +34,6 @@
   </div>
 
   <div id="sign-up" class="d-flex align-items-center px-3" style="font-size: 22px;">
-    <a class= "nav-link active" href="#" style="color:black;"><i class="fa-solid fa-user"></i></a>
+    <a class= "nav-link active" href="signin.php" style="color:black;"><i class="fa-solid fa-user"></i></a>
   </div>
 </nav>

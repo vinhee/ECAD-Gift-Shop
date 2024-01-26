@@ -47,7 +47,6 @@ if (isset($_GET["keywords"]) && trim($_GET['keywords']) != "") {
     $keyword = $_GET["searchProduct"];
     $searchProduct = "searchProducts.php?keyword=$keyword";
 }
-include("footer.php");
 ?>
 
 
