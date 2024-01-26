@@ -3,7 +3,7 @@
 $servername = 'localhost';
 $username = 'root';
 $userpwd = '';
-$dbname = 'memorable gifts'; 
+$dbname = 'giftmaven'; 
 
 // Create connection
 $conn = new mysqli($servername, $username, $userpwd, $dbname);
