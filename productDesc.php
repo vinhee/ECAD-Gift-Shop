@@ -41,6 +41,11 @@ while ($row = $result->fetch_array()){
     echo "<h2>" . $row['ProductTitle'] . "</h2>";
     echo "</div>";
 
+    $formattedPrice = number_format($row["Price"], 2);
+    echo "<div class='row-mb-3' style='padding-bottom:40px;'>";
+    echo "<h4>". "Price: S$" . $formattedPrice . "</h4>";
+    echo "</div>";
+
     echo "<h5>Product Description:</h5>";
     echo "<div class='row-mb-3' style='padding-bottom:40px;'>"; // Product Description
     echo $row['ProductDesc'];
