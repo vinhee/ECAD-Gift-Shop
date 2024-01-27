@@ -1,3 +1,4 @@
+<!--Done by Vin Hee-->
 <?php
 include("navbar.php")
 ?>
@@ -27,7 +28,8 @@ $qry = "SELECT * FROM product WHERE ProductTitle LIKE '%$keyword%' OR ProductDes
         echo "<div class='card' style='width: 60rem; margin: 0 auto;'>";
         echo "<div class='card-body'>";
         echo "<h5 class='card-title'>".$row['ProductTitle']."</h5>";
-        echo "<p class='card-text'>".$row['ProductDesc']."</p>";
+        $formattedPrice = number_format($row["Price"],2);
+        echo "<p>"."Price: S$".$formattedPrice."</p>";
         echo "<a href='productDesc.php?pid=".$row['ProductID']."' class='btn btn-primary' style='background-color: #C7B7A3;'>View Product</a>";
         echo "</div>";
         echo "</div>";

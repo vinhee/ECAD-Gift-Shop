@@ -1,0 +1,8 @@
+.noStock {
+    color: red;
+    font-weight: bold;
+}
+
+.prodCard {
+    padding-bottom: 30px;
+}
