@@ -10,6 +10,27 @@
     <title>GiftMaven</title>
 </head>
 
+<?php
+session_start();
+$Content = "<div class='d-flex align-items-center px-3' style='font-size: 20px;'>
+<p style='margin-bottom: 0px;'><b>Guest</b></p>
+</div>
+<div id='sign-up' class='d-flex align-items-center px-3' style='font-size: 22px;'>
+<a class='nav-link active' href='login.php' style='color:black;'><i class='fa-solid fa-user'></i></a>
+</div>";
+if(isset($_SESSION["Name"])){
+  $Content = "<div class='d-flex align-items-center px-3' style='font-size: 20px;'>
+  <p style='margin-bottom: 0px;'><b>$_SESSION[Name]</b></p>
+  </div>
+  <div class='d-flex align-items-center px-3' style='font-size: 22px;'>
+  <a class='nav-link active' href='#' style='color:black;'><i class='fa-solid fa-cart-shopping'></i></a>
+  </div>
+  <div class='d-flex align-items-center px-3' style='font-size: 20px;'>
+  <a class='nav-link active' href='logout.php'><p style='margin-bottom: 0px;'><b>Logout</b></p></a>
+  </div>";
+}
+?>
+
 <nav class="navbar navbar-expand navbar-light" style="background-color: #C7B7A3">
   <a class="navbar-brand" href="index.php"><img src="Images/GiftMaven. logo.png" height="100px";></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,11 +50,8 @@
     </ul>
   </div>
 
-  <div class="d-flex align-items-center px-3" style="font-size: 22px;">
-    <a class="nav-link active" href="#" style="color:black;"><i class="fa-solid fa-cart-shopping"></i></a>
-  </div>
-
-  <div id="sign-up" class="d-flex align-items-center px-3" style="font-size: 22px;">
-    <a class= "nav-link active" href="signin.php" style="color:black;"><i class="fa-solid fa-user"></i></a>
-  </div>
+  <?php
+  echo $Content;
+  ?>
+  
 </nav>

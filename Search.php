@@ -1,3 +1,4 @@
+<!--Done by Vin Hee-->
 <?php
 include("navbar.php");
 ?>
@@ -18,7 +19,7 @@ include("navbar.php");
 
 
 <?php
-if (isset($_GET["keywords"]) && trim($_GET['keywords']) != "") {
+if (isset($_GET["searchProduct"]) && trim($_GET['searchProduct']) != "") {
     $keyword = $_GET["searchProduct"];
     $searchProduct = "searchProducts.php?keyword=$keyword";
 }
