@@ -2,6 +2,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <?php
@@ -28,9 +29,9 @@ while($row = $result->fetch_array()) {
     $img = "./Images/category/$row[CatImage]";
     $catname = urlencode($row["CatName"]);
     $catproduct = "products.php?cid=$row[CategoryID]&catName=$catname";
-    echo "<a href=$catproduct>";
+    echo "<a href=$catproduct style='text-decoration: none;'>";
     echo "<img src='$img' />";
-    echo "<p>$row[CatName]</p>";
+    echo "<p class='catName'>$row[CatName]</p>";
     echo "</a>";
     echo "<div class='col-md-12 text-center'>";
     echo "$row[CatDesc]";

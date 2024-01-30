@@ -64,3 +64,16 @@
     font-size: 16px;
     font-weight: bold;
 }
+
+.navBarUser {
+    margin: auto 0;
+    font-weight: bold;
+    padding-left: 10px;
+}
+
+.catName {
+    color:#352F44;
+    font-family: 'League Spartan', sans-serif;
+    font-size: 25px;
+    font-weight: bold;
+}

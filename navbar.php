@@ -13,16 +13,15 @@
 
 <?php
 session_start();
-$Content = "<div class='d-flex align-items-center px-3' style='font-size: 20px;'>
-<p class='navbarText' style='margin-bottom: 0px;'><b>Guest</b></p>
-</div>
-<div id='sign-up' class='d-flex align-items-center px-3' style='font-size: 22px;'>
+$Content = "<div id='sign-up' class='d-flex align-items-center px-2' style='font-size: 22px;'>
 <a class='nav-link active' href='login.php' style='color:black;'><i class='fa-solid fa-user'></i></a>
+</div>
+<div class='d-flex align-items-center px-3' style='font-size: 20px; padding-right: 20px;'>
+<p class='navbarText' style='margin-bottom: 0px;'><b>Guest</b></p>
 </div>";
 if(isset($_SESSION["Name"])){
-  $Content = "<div class='d-flex align-items-center px-3' style='font-size: 20px;'>
-  <p class='navbarText' style='margin-bottom: 0px;'><b>$_SESSION[Name]</b></p>
-  </div>
+  $Content = "<div class='d-flex align-items-center px-3' style='font-size: 20px;'><i class='fa-solid fa-user'>
+  </i><p class='navBarUser'>$_SESSION[Name]</p></div>
   <div class='d-flex align-items-center px-3' style='font-size: 22px;'>
   <a class='nav-link active' href='#' style='color:black;'><i class='fa-solid fa-cart-shopping'></i></a>
   </div>
@@ -32,7 +31,7 @@ if(isset($_SESSION["Name"])){
 }
 ?>
 
-<nav class="navbar navbar-expand navbar-light" style="background-color: #C7B7A3">
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #C7B7A3">
   <a class="navbar-brand" href="index.php"><img src="Images/GiftMaven. logo.png" height="100px";></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -54,5 +53,7 @@ if(isset($_SESSION["Name"])){
   <?php
   echo $Content;
   ?>
-  
 </nav>
+
+
+  
