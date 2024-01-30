@@ -7,26 +7,27 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/624113c1c9.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan&display=swap" rel="stylesheet">
     <title>GiftMaven</title>
 </head>
 
 <?php
 session_start();
 $Content = "<div class='d-flex align-items-center px-3' style='font-size: 20px;'>
-<p style='margin-bottom: 0px;'><b>Guest</b></p>
+<p class='navbarText' style='margin-bottom: 0px;'><b>Guest</b></p>
 </div>
 <div id='sign-up' class='d-flex align-items-center px-3' style='font-size: 22px;'>
 <a class='nav-link active' href='login.php' style='color:black;'><i class='fa-solid fa-user'></i></a>
 </div>";
 if(isset($_SESSION["Name"])){
   $Content = "<div class='d-flex align-items-center px-3' style='font-size: 20px;'>
-  <p style='margin-bottom: 0px;'><b>$_SESSION[Name]</b></p>
+  <p class='navbarText' style='margin-bottom: 0px;'><b>$_SESSION[Name]</b></p>
   </div>
   <div class='d-flex align-items-center px-3' style='font-size: 22px;'>
   <a class='nav-link active' href='#' style='color:black;'><i class='fa-solid fa-cart-shopping'></i></a>
   </div>
   <div class='d-flex align-items-center px-3' style='font-size: 20px;'>
-  <a class='nav-link active' href='logout.php'><p style='margin-bottom: 0px;'><b>Logout</b></p></a>
+  <a class='nav-link active navbarText' href='logout.php'><p style='margin-bottom: 0px;'><b>Logout</b></p></a>
   </div>";
 }
 ?>
@@ -39,13 +40,13 @@ if(isset($_SESSION["Name"])){
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="index.php" style="font-size: 18px;">Home <span class="sr-only"></span></a>
+        <a class="nav-link navbarText" href="index.php" style="font-size: 18px;">Home <span class="sr-only"></span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="productCat.php" style="font-size: 18px;">Categories<span class="sr-only"></span></a>
+        <a class="nav-link navbarText" href="productCat.php" style="font-size: 18px;">Categories<span class="sr-only"></span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="Search.php" style="font-size: 18px;">Search<span class="sr-only"></span></a>
+        <a class="nav-link navbarText" href="Search.php" style="font-size: 18px;">Search<span class="sr-only"></span></a>
       </li>
     </ul>
   </div>

@@ -1,4 +1,3 @@
-<!--Done by: Vin Hee-->
 <!DOCTYPE html>
 <html lang="en">
 <head>

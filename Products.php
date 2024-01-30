@@ -21,10 +21,10 @@ include("navbar.php");
 </div>
 
 <?php
-include("mysqlConn.php");
+include_once("mysqlConn.php");
 $cid=$_GET["cid"]; // Get category ID to get products
 
-$qry = "SELECT p.ProductID, p.ProductTitle, p.ProductImage, p.Price, p.Quantity, p.Offered, p.OfferedPrice
+$qry = "SELECT p.ProductID, p.ProductTitle, p.ProductImage, p.Price, p.Quantity, p.Offered, p.OfferedPrice, p.OfferEndDate
         FROM CatProduct cp INNER JOIN product p ON cp.ProductID=p.ProductID
 		WHERE cp.CategoryID=? ORDER BY ProductTitle ASC" ;
 $stmt = $conn->prepare($qry);
@@ -48,7 +48,8 @@ while($row = $result->fetch_array()) {
     echo "<div class='card-body text-center'>";
     
     // Checking if certain products has offer
-    if ($row["Offered"] == 1){
+    $Currdate = date('Y-m-d');
+    if ($row["Offered"] == 1 && $row["OfferEndDate"] > $Currdate){
         $offeredPrice = number_format($row["OfferedPrice"],2);
         echo "<h5 class='card-title'>'$row[ProductTitle]'</h5>";
         echo "<p class='onSale'>On Sale!</p>";
@@ -59,7 +60,7 @@ while($row = $result->fetch_array()) {
         echo "<h5 class='card-title'>'$row[ProductTitle]'</h5>";
         echo "<p>"."Price: S$".$formattedPrice."</p>";
     }
-    echo "<a href='$product' class='btn btn-primary justify-content-center' style='background-color: #C7B7A3;'>View Product</a>";
+    echo "<a href='$product' class='btn btn-primary justify-content-center viewProduct'>View Product</a>";
     echo "</div>";
     echo "</div>";
     echo "</div>";

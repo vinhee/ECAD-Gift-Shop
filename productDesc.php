@@ -35,7 +35,7 @@ while ($row = $result->fetch_array()){
 
 
 
-    echo "<div class='container' text-center' style='padding-top:100px; padding-bottom:100px;'>";
+    echo "<div class='container' text-center' style='padding-top:100px; padding-bottom:50px;'>";
     echo "<div class='row'>"; // Container split into 2 columns
 
     echo "<div class='col-md-6 addCartBtn'>";    // content for left column
@@ -81,11 +81,11 @@ while ($row = $result->fetch_array()){
 
     echo "<div class='row-mb-3 addCartBtn'>"; // Add to Cart button
     if($row["Quantity"] < 1){
-        echo "<a href='#' class='btn btn-primary justify-content-center disabled' style='background-color: #C7B7A3;'>Add to Cart</a>";
+        echo "<a href='#' class='btn btn-primary justify-content-center disabled viewProduct'>Add to Cart</a>";
         echo "<p class='noStock'> Product is currently out of stock!</p>";
     }
     else{
-        echo "<a href='#' class='btn btn-primary justify-content-center' style='background-color: #C7B7A3;'>Add to Cart</a>";
+        echo "<a href='#' class='btn btn-primary justify-content-center viewProduct'>Add to Cart</a>";
     }
     echo "</div>";
 
