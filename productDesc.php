@@ -38,7 +38,7 @@ while ($row = $result->fetch_array()){
     echo "<div class='container' text-center' style='padding-top:100px; padding-bottom:100px;'>";
     echo "<div class='row'>"; // Container split into 2 columns
 
-    echo "<div class='col-md-6'>";    // content for left column
+    echo "<div class='col-md-6 addCartBtn'>";    // content for left column
     echo "<img src='$imgPathname'>";
     echo "</div>";
 
@@ -47,10 +47,25 @@ while ($row = $result->fetch_array()){
     echo "<h2>" . $row['ProductTitle'] . "</h2>";
     echo "</div>";
 
-    $formattedPrice = number_format($row["Price"], 2);
-    echo "<div class='row-mb-3 prodCard'>";
-    echo "<h4>". "Price: S$" . $formattedPrice . "</h4>";
-    echo "</div>";
+    if($row["Offered"] == 1){
+        echo "<div class='col-md-6 justify-content-center'>";     // content for right column (split into 4 rows)
+        echo "<div class='row-mb-3' style='padding-bottom: 10px;' >";
+        echo "<p class='onSale text-center'>On Sale!</p>";
+        echo "</div>";
+
+        $formattedPrice = number_format($row["Price"], 2);
+        $offeredPrice = number_format($row["OfferedPrice"],2);
+        echo "<div class='row-mb-3 prodCard'>";
+        echo "<h4>". "<s>". "Price:" . "S$" . $formattedPrice ."</s>"."</h4>";
+        echo "<h4 class='salePrice'>". "Offered Price: S$" . $offeredPrice ."</h4>";
+        echo "</div>";
+    }
+    else {
+        $formattedPrice = number_format($row["Price"], 2);
+        echo "<div class='row-mb-3 prodCard'>";
+        echo "<h4>". "Price: S$" . $formattedPrice . "</h4>";
+        echo "</div>";
+    }
 
     echo "<h5>Product Description:</h5>";
     echo "<div class='row-mb-3 prodCard'>"; // Product Description
@@ -64,7 +79,7 @@ while ($row = $result->fetch_array()){
     }
     echo "</div>";
 
-    echo "<div class='row-mb-3'>"; // Add to Cart button
+    echo "<div class='row-mb-3 addCartBtn'>"; // Add to Cart button
     if($row["Quantity"] < 1){
         echo "<a href='#' class='btn btn-primary justify-content-center disabled' style='background-color: #C7B7A3;'>Add to Cart</a>";
         echo "<p class='noStock'> Product is currently out of stock!</p>";

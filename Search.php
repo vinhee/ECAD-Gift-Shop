@@ -3,7 +3,7 @@
 include("navbar.php");
 ?>
 
-
+<!--Fix positioning-->
 <div class="row justify-content-center" style="padding-top: 200px; padding-bottom: 200px;">  
     <form class="form-inline my-2 my-lg-0" action="searchProducts.php">
         <div class="input-group" style="width: 400px;">

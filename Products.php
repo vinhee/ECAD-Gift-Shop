@@ -46,15 +46,17 @@ while($row = $result->fetch_array()) {
     echo "<div class='card' style='width: 18rem;'>";
     echo "<img src='$imgPathname' class='card-img-top'>";
     echo "<div class='card-body text-center'>";
-    echo "<h5 class='card-title'>'$row[ProductTitle]'</h5>";
     
     // Checking if certain products has offer
     if ($row["Offered"] == 1){
         $offeredPrice = number_format($row["OfferedPrice"],2);
+        echo "<h5 class='card-title'>'$row[ProductTitle]'</h5>";
+        echo "<p class='onSale'>On Sale!</p>";
         echo "<p>"."<s>"."Price: S$".$formattedPrice."</s>"."</p>";
-        echo "<p style='color: red; font-weight: bold;'>"."Offer Price: S$".$offeredPrice."</p>";
+        echo "<p class='noStock' style='font-size:15px;'>"."Offer Price: S$".$offeredPrice."</p>";
     }
     else{
+        echo "<h5 class='card-title'>'$row[ProductTitle]'</h5>";
         echo "<p>"."Price: S$".$formattedPrice."</p>";
     }
     echo "<a href='$product' class='btn btn-primary justify-content-center' style='background-color: #C7B7A3;'>View Product</a>";
