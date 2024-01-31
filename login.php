@@ -9,30 +9,40 @@
 include("navbar.php");
 ?>
 
-<div class="container text-center" style="margin:auto; padding-top: 100px;">
-    <div class="row justify-content-center">
-        <div class="col-md-5 mb-2">
-            <a href="login.php"><button class="btn btn-primary btn-block" style="background-color: white; color: black; width: calc(50% - 10px);">Login</button></a>
-        </div>
-        <div class="col-md-5 mb-2">
-            <a href="register.php"><button class="btn btn-primary btn-block" style= "background-color: #C7B7A3; width: calc(50% - 10px);">Register</button></a>
+<div class="container-fluid ps-md-0">
+  <div class="row g-0 justify-content-center">
+    <div class="col-md-8 col-lg-6 mx-auto">
+      <div class="login d-flex align-items-center py-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-9 col-lg-8 mx-auto">
+              <h3 class="login-heading mb-4 text-center">Welcome back!</h3>
+
+              <!-- Sign In Form -->
+              <form>
+                <div class="form-floating mb-3">
+                  <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                  <label for="floatingInput">Email address</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                  <label for="floatingPassword">Password</label>
+                </div>
+
+                <div class="d-grid">
+                  <button class="btn btn-lg btn-login fw-bold mb-2" style="background-color: #352F44; color: white;" type="submit">SIGN IN</button>
+                  <div class="text-center">
+                    <p class="small">Don't have an account? Sign up <a href="register.php"> here! </a></p>
+                  </div>
+                </div>
+
+              </form>
+            </div>
+          </div>
         </div>
     </div>
+  </div>
 </div>
-
-
-
-<form style="width: 925px; margin: auto; padding-top: 20px; padding-bottom: 100px;" action="checkLogin.php" method="post">
-  <div class="form-group loginPage">
-    <label for="userEmail"><i class="fa-solid fa-envelope"></i>  Email address</label>
-    <input type="email" class="form-control" name="userEmail" id="userEmail" aria-describedby="emailHelp" placeholder="Enter email">
-  </div>
-  <div class="form-group loginPage">
-    <label for="userPassword"><i class="fa-solid fa-lock"></i>  Password</label>
-    <input type="password" class="form-control" name="userPassword" id="userPassword" placeholder="Password">
-  </div>
-  <button type="submit" class="btn btn-primary" style="background-color: #C7B7A3; width:925px;">Sign In</button>
-</form>
 
 
 <?php

@@ -7,12 +7,9 @@
     padding-bottom: 20px;
 }
 
-.loginPage {
-    padding-bottom: 100px;
-}
 
 .loginBtn{ 
-    width:925px;
+    background-color: #352F44;
 }
 
 .onSale {

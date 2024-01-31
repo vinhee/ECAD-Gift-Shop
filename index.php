@@ -19,7 +19,7 @@ $result = mysqli_query($conn,$qry);
 $queryresult = mysqli_num_rows($result);
 
 echo "<div class='container' mx-auto style='padding-top:20px; padding-bottom:100px; padding-left:20px;'>";
-echo "<div class='row'>";
+echo "<div class='row justify-content-center'>";
 if ($queryresult > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
         $product = "productDesc.php?pid=$row[ProductID]"; // Getting Product ID
@@ -29,7 +29,7 @@ if ($queryresult > 0) {
         
         $currDate = date('Y-m-d');
         if ($row["Offered"] == 1 && $row["OfferEndDate"] > $currDate) {
-            echo "<div class='col-md-3' style='padding: 20px;'>"; 
+            echo "<div class='col-md-3 justify-content-center' style='padding: 20px;'>"; 
             echo "<div class='card' style='width: 15rem;'>";
             echo "<img src='$imgPathname' class='card-img-top'>";
             echo "<div class='card-body text-center'>";
