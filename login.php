@@ -19,13 +19,13 @@ include("navbar.php");
               <h3 class="login-heading mb-4 text-center">Welcome back!</h3>
 
               <!-- Sign In Form -->
-              <form>
+              <form name="login" action="checkLogin.php" method="post">
                 <div class="form-floating mb-3">
-                  <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                  <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="userEmail">
                   <label for="floatingInput">Email address</label>
                 </div>
                 <div class="form-floating mb-3">
-                  <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                  <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="userPassword">
                   <label for="floatingPassword">Password</label>
                 </div>
 
