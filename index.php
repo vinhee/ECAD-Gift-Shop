@@ -28,7 +28,7 @@ if ($queryresult > 0) {
         $imgPathname = "Images/Products/$img";
         
         $currDate = date('Y-m-d');
-        if ($row["Offered"] == 1 && $row["OfferEndDate"] > $currDate) {
+        if ($row["Offered"] == 1 && $row["OfferEndDate"] > $currDate && $row["OfferStartDate"] < $currDate){
             echo "<div class='col-md-3 justify-content-center' style='padding: 20px;'>"; 
             echo "<div class='card' style='width: 15rem;'>";
             echo "<img src='$imgPathname' class='card-img-top'>";
