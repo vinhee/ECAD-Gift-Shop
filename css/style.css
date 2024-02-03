@@ -32,8 +32,13 @@
 
 .searchBar{
     padding-top: 200px;
-    padding-bottom: 200px;
-    padding-left: 500px;
+    padding-bottom: 50px;
+    width: 400px;
+}
+
+.searchProductBar{
+    padding-top: 100px;
+    padding-bottom: 100px;
     width: 350px;
 }
 
@@ -73,4 +78,24 @@
     font-family: 'League Spartan', sans-serif;
     font-size: 25px;
     font-weight: bold;
+}
+
+.footer{
+    font-family: 'League Spartan', sans-serif;
+    font-weight: bold;
+    color:#352F44;
+    background-color: #C7B7A3;
+}
+
+.sliderCheck{
+    padding-bottom: 75px;
+    width: 350px;
+}
+
+.priceRange {
+    padding-bottom: 200px;
+}
+
+.priceRange2{
+    padding-bottom: 50px;
 }

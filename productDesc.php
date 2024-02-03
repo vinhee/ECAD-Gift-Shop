@@ -24,6 +24,7 @@ $stmt->close();
 while ($row = $result->fetch_array()){
     $img = "$row[ProductImage]"; // Getting Product Image Name
     $imgPathname = "Images/Products/$img";
+    $currDate = date("Y-m-d");
 
     $qry ="SELECT s.SpecName, ps.SpecVal FROM productspec ps
            INNER JOIN specification s ON ps.SpecID=s.SpecID
@@ -49,7 +50,7 @@ while ($row = $result->fetch_array()){
     echo "<h2>" . $row['ProductTitle'] . "</h2>";
     echo "</div>";
 
-    if($row["Offered"] == 1){
+    if($row["Offered"] == 1 && $currDate >= $row["OfferStartDate"] && $currDate <= $row["OfferEndDate"]){
         echo "<div class='col-md-6 justify-content-center'>";     // content for right column (split into 4 rows)
         echo "<div class='row-mb-3' style='padding-bottom: 10px;' >";
         echo "<p class='onSale text-center'>On Sale!</p>";
