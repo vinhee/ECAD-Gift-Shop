@@ -2,8 +2,9 @@
 session_start();
 
 // Include necessary files
-include_once("paypal_payment.php"); // Include the file that contains PayPal settings
+include_once("PayPal_payment.php"); // Include the file that contains PayPal settings
 include_once("mysqlConn.php"); 
+//include_once("Check_Quantity.php");
 
 $shopperID = isset($_SESSION['shopperID']) ? $_SESSION['shopperID'] : 0;
 
@@ -132,16 +133,10 @@ if (isset($_GET["token"]) && isset($_GET["PayerID"])) {
         "SUCCESSWITHWARNING" == strtoupper($httpParsedResponseAr["ACK"])
     ) {
         // Automatically remove items from the shopping cart after payment
-        $deleteCartItemsQuery = "DELETE FROM ShopCartItem WHERE ShopCartID IN (SELECT ShopCartID FROM ShopCart WHERE ShopperID = $shopperID AND OrderPlaced = 0)";
-        mysqli_query($conn, $deleteCartItemsQuery);
-        error_log("Shopper ID: $shopperID");
-        error_log("Delete Query: $deleteCartItemsQuery");
-
-
-		header('Location: orderConfirmed.php');
-        exit; 
+        //$deleteCartItemsQuery = "DELETE FROM ShopCartItem WHERE ShopCartID IN (SELECT ShopCartID FROM ShopCart WHERE ShopperID = $shopperID AND OrderPlaced = 0)";
+        //mysqli_query($conn, $deleteCartItemsQuery);
         
-        // ... rest of your code
+        
 
     } else {
         echo "<div style='color:red'><b>DoExpressCheckoutPayment failed : </b>" .

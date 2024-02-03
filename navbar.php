@@ -12,7 +12,7 @@
 </head>
 <body>
 <?php
-//session_start();
+session_start();
 $Content = "<div id='sign-up' class='d-flex align-items-center px-2' style='font-size: 22px;'>
 <a class='nav-link active' href='login.php' style='color:black;'><i class='fa-solid fa-user'></i></a>
 </div>
