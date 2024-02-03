@@ -7,51 +7,45 @@ include_once('cartFunctions.php');
 include("navbar.php");
 
 // Get shopper ID from the session
-//session_start();
 $shopperID = isset($_SESSION['shopperID']) ? $_SESSION['shopperID'] : 0;
-/*
-// Check if a product is being added to the cart
-if (isset($_POST['add_to_cart']) && isset($_POST['product_id'])) {
-    $productID = $_POST['product_id'];
-
-    // Check if the product is already in the cart
-    $existingCartItemQuery = "SELECT * FROM ShopCartItem 
-                              WHERE ShopCartID IN (SELECT ShopCartID FROM ShopCart WHERE ShopperID = $shopperID AND OrderPlaced = 0)
-                              AND ProductID = $productID";
-    $existingCartItemResult = mysqli_query($conn, $existingCartItemQuery);
-
-    if (mysqli_num_rows($existingCartItemResult) > 0) {
-        // Product already in the cart, update quantity
-        $existingCartItem = mysqli_fetch_assoc($existingCartItemResult);
-        $newQuantity = $existingCartItem['Quantity'] + 1;
-
-        $updateQuery = "UPDATE ShopCartItem SET Quantity = $newQuantity
-                        WHERE ShopCartID = {$existingCartItem['ShopCartID']} AND ProductID = $productID";
-        mysqli_query($conn, $updateQuery);
-    } else {
-        // Product not in the cart, insert as a new item
-        $insertQuery = "INSERT INTO ShopCartItem (ShopCartID, ProductID, Price, Quantity)
-                        VALUES ((SELECT ShopCartID FROM ShopCart WHERE ShopperID = $shopperID AND OrderPlaced = 0), $productID, 0, 1)";
-        mysqli_query($conn, $insertQuery);
-    }
-}
-*/
 
 // Fetch shopping cart items for the logged-in shopper
-$query = "SELECT SCI.ShopCartID, SCI.ProductID, P.ProductTitle, SCI.Price, SCI.Quantity
+$query = "SELECT SCI.ShopCartID, SCI.ProductID, P.ProductTitle, P.Quantity AS StockQuantity, SCI.Price, SCI.Quantity
           FROM ShopCartItem SCI
           INNER JOIN Product P ON SCI.ProductID = P.ProductID
           WHERE SCI.ShopCartID IN (SELECT ShopCartID FROM ShopCart WHERE ShopperID = $shopperID AND OrderPlaced = 0)";
+
 $result = mysqli_query($conn, $query);
 
 // Check for errors in the query
 if (!$result) {
     die("Error: " . mysqli_error($conn));
 }
+
+// Calculate total amount and tax
+$totalAmount = 0;
+$gstRate = 9.00; // You need to fetch the current GST rate from the database, update this value accordingly
+
+mysqli_data_seek($result, 0); // Reset result set to the beginning
+while ($row = mysqli_fetch_assoc($result)) {
+    $totalAmount += $row['Price'] * $row['Quantity'];
+
+    // Check if order quantity exceeds stock quantity
+    if ($row['Quantity'] > $row['StockQuantity']) {
+        // Display an error message if needed
+    }
+}
+
+// Calculate tax based on the GST rate
+$tax = $totalAmount * ($gstRate / 100);
+
+// Calculate total amount including tax
+$totalAmountIncludingTax = $totalAmount + $tax;
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Shopping Cart</title>
@@ -73,7 +67,8 @@ if (!$result) {
             margin-bottom: 20px;
         }
 
-        th, td {
+        th,
+        td {
             border: 1px solid #dee2e6;
             padding: 10px;
             text-align: left;
@@ -100,6 +95,7 @@ if (!$result) {
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>Shopping Cart</h1>
@@ -116,14 +112,14 @@ if (!$result) {
             </thead>
             <tbody>
                 <?php
+                mysqli_data_seek($result, 0); // Reset result set to the beginning
                 while ($row = mysqli_fetch_assoc($result)) {
                     $total = $row['Price'] * $row['Quantity'];
                     echo "<tr>";
                     echo "<td>{$row['ProductTitle']}</td>";
                     echo "<td>{$row['Price']}</td>";
                     echo "<td>";
-                    //echo "<form method='post' action='update_cart.php'>";
-                    echo "<form method='post' action='cartFunctions.php'>"; // Form for adding to cart
+                    echo "<form method='post' action='cartFunctions.php'>";
                     echo "<input type='number' name='quantity' value='{$row['Quantity']}' min='1'>";
                     echo "<input type='hidden' name='action' value='update'>";
                     echo "<input type='hidden' name='product_id' value='{$row['ProductID']}'>";
@@ -132,8 +128,7 @@ if (!$result) {
                     echo "</td>";
                     echo "<td>$total</td>";
                     echo "<td>";
-                    //echo "<form method='post' action='delete_cart.php'>";
-                    echo "<form method='post' action='cartFunctions.php'>"; // Form for adding to cart
+                    echo "<form method='post' action='cartFunctions.php'>";
                     echo "<input type='hidden' name='action' value='delete'>";
                     echo "<input type='hidden' name='product_id' value='{$row['ProductID']}'>";
                     echo "<input type='submit' name='delete_cart' value='Remove'>";
@@ -145,20 +140,39 @@ if (!$result) {
             </tbody>
         </table>
 
-        <?php
-        // Calculate total amount
-        $totalAmount = 0;
-        mysqli_data_seek($result, 0); // Reset result set to the beginning
-        while ($row = mysqli_fetch_assoc($result)) {
-            $totalAmount += $row['Price'] * $row['Quantity'];
-        }
-        ?>
+        <?php if ($totalAmount > 0): ?>
+            <p class="total">Total Amount (Excluding Tax): $<?php echo $totalAmount; ?></p>
+            <?php if (isset($tax)): ?>
+                <p class="total">GST (<?php echo $gstRate; ?>%): $<?php echo $tax; ?></p>
+            <?php endif; ?>
+            <?php if (isset($totalAmountIncludingTax)): ?>
+                <p class="total">Total Amount (Including Tax): $<?php echo $totalAmountIncludingTax; ?></p>
+            <?php endif; ?>
 
-        <p class="total">Total Amount: $<?php echo $totalAmount; ?></p>
-        <!--
-        <a href="checkout.php" class="btn btn-success checkout-btn">Checkout</a>
-        -->
-        <?php include("checkout.php"); ?>
+            <?php
+            // Validate order quantity against stock quantity before allowing checkout
+            $allowCheckout = true;
+
+            mysqli_data_seek($result, 0); // Reset result set to the beginning
+            while ($row = mysqli_fetch_assoc($result)) {
+                // Check if order quantity exceeds stock quantity
+                if ($row['Quantity'] > $row['StockQuantity']) {
+                    $allowCheckout = false;
+                    echo "<div class='alert alert-danger' role='alert'>";
+                    echo "Error: The quantity for {$row['ProductTitle']} exceeds the available stock. Please update the quantity.";
+                    echo "</div>";
+                }
+            }
+            ?>
+
+            <?php if ($allowCheckout): ?>
+                <a href="checkout.php" class="btn btn-success checkout-btn">Checkout</a>
+            <?php endif; ?>
+
+        <?php else: ?>
+            <p class="total">Your shopping cart is empty.</p>
+        <?php endif; ?>
+
         <br /><br />
     </div>
 
@@ -169,7 +183,7 @@ if (!$result) {
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
         integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
 
-
-<?php include("footer.php"); ?>
+    <?php include("footer.php"); ?>
 </body>
+
 </html>
