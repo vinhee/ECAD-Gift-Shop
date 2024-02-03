@@ -12,7 +12,7 @@
 </head>
 <body>
 <?php
-session_start();
+//session_start();
 $Content = "<div id='sign-up' class='d-flex align-items-center px-2' style='font-size: 22px;'>
 <a class='nav-link active' href='login.php' style='color:black;'><i class='fa-solid fa-user'></i></a>
 </div>
@@ -46,9 +46,6 @@ if(isset($_SESSION["Name"])){
       </li>
       <li class="nav-item active">
         <a class="nav-link navbarText" href="Search.php" style="font-size: 18px;">Search<span class="sr-only"></span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link navbarText" href="Shopping_cart.php" style="font-size: 18px;">Shopping cart<span class="sr-only"></span></a>
       </li>
     </ul>
   </div>
