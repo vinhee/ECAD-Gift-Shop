@@ -18,6 +18,7 @@ $stmt = $conn->prepare("SELECT * FROM Shopper WHERE Email = ?");
             $validUser = true;
             session_start();
             $_SESSION["Name"] = $row["Name"];
+            $_SESSION["shopperID"] = $row["ShopperID"];
             header("Location: index.php");
             exit;
         }

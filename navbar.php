@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=League+Spartan&display=swap" rel="stylesheet">
     <title>GiftMaven</title>
 </head>
-
+<body>
 <?php
 session_start();
 $Content = "<div id='sign-up' class='d-flex align-items-center px-2' style='font-size: 22px;'>
@@ -23,7 +23,7 @@ if(isset($_SESSION["Name"])){
   $Content = "<div class='d-flex align-items-center px-3' style='font-size: 20px;'><i class='fa-solid fa-user'>
   </i><p class='navBarUser'>$_SESSION[Name]</p></div>
   <div class='d-flex align-items-center px-3' style='font-size: 22px;'>
-  <a class='nav-link active' href='#' style='color:black;'><i class='fa-solid fa-cart-shopping'></i></a>
+  <a class='nav-link active' href='Shopping_cart.php' style='color:black;'><i class='fa-solid fa-cart-shopping'></i></a>
   </div>
   <div class='d-flex align-items-center px-3' style='font-size: 20px;'>
   <a class='nav-link active navbarText' href='logout.php'><p style='margin-bottom: 0px;'><b>Logout</b></p></a>
@@ -46,6 +46,9 @@ if(isset($_SESSION["Name"])){
       </li>
       <li class="nav-item active">
         <a class="nav-link navbarText" href="Search.php" style="font-size: 18px;">Search<span class="sr-only"></span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link navbarText" href="Shopping_cart.php" style="font-size: 18px;">Shopping cart<span class="sr-only"></span></a>
       </li>
     </ul>
   </div>

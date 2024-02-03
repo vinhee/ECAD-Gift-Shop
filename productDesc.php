@@ -1,9 +1,11 @@
 <!--Done by Vin Hee-->
+<!--
 <head>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/bootstrap.bundle.min.js"></script>
 </head>
+-->
 <?php
 include("navbar.php");
 ?>
@@ -55,6 +57,7 @@ while ($row = $result->fetch_array()){
 
         $formattedPrice = number_format($row["Price"], 2);
         $offeredPrice = number_format($row["OfferedPrice"],2);
+        $price = $row["OfferedPrice"];
         echo "<div class='row-mb-3 prodCard'>";
         echo "<h4>". "<s>". "Price:" . "S$" . $formattedPrice ."</s>"."</h4>";
         echo "<h4 class='salePrice'>". "Offered Price: S$" . $offeredPrice ."</h4>";
@@ -62,6 +65,7 @@ while ($row = $result->fetch_array()){
     }
     else {
         $formattedPrice = number_format($row["Price"], 2);
+        $price = $row["Price"];
         echo "<div class='row-mb-3 prodCard'>";
         echo "<h4>". "Price: S$" . $formattedPrice . "</h4>";
         echo "</div>";
@@ -80,13 +84,22 @@ while ($row = $result->fetch_array()){
     echo "</div>";
 
     echo "<div class='row-mb-3 addCartBtn'>"; // Add to Cart button
-    if($row["Quantity"] < 1){
-        echo "<a href='#' class='btn btn-primary justify-content-center disabled viewProduct'>Add to Cart</a>";
-        echo "<p class='noStock'> Product is currently out of stock!</p>";
-    }
-    else{
-        echo "<a href='#' class='btn btn-primary justify-content-center viewProduct'>Add to Cart</a>";
-    }
+if ($row["Quantity"] < 1) {
+    echo "<a href='add_to_cart.php' class='btn btn-primary justify-content-center disabled viewProduct'>Add to Cart</a>";
+    echo "<p class='noStock'> Product is currently out of stock!</p>";
+} else {
+    //echo "<form method='post' action='add_to_cart.php'>"; // Form for adding to cart
+    echo "<form method='post' action='cartFunctions.php'>"; // Form for adding to cart
+    //echo "<input type='hidden' name='add_to_cart' value='true'>";
+    echo "<input type='hidden' name='action' value='add'>";
+    echo "<input type='hidden' name='product_id' value='{$row['ProductID']}'>";
+    echo "<input type='hidden' name='price' value='$price'>";
+    echo "<button type='submit' class='btn btn-primary justify-content-center viewProduct'>Add to Cart</button>";
+    echo "</form>";
+}
+echo "</div>";
+
+
     echo "</div>";
 
     echo "</div>";
