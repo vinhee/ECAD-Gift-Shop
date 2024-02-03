@@ -1,3 +1,4 @@
+<!--
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,7 @@
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
 <body>
-
+-->
 <footer class="py-3 my-4" style="background-color:#C7B7A3; color:black;">
     <ul class="nav justify-content-center border-bottom pb-3 mb-3">
       <li class="nav-item foot-text"><a href="index.php" class="nav-link px-2 text-body-secondary" style="color:black;">Home</a></li>
