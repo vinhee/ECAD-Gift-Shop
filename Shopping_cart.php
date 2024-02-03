@@ -106,7 +106,7 @@ $totalAmountIncludingTax = $totalAmount + $tax;
                     <th>Product</th>
                     <th>Price</th>
                     <th>Quantity</th>
-                    <th>Total</th>
+                    <th>Total Price</th>
                     <th>Delete</th>
                 </tr>
             </thead>

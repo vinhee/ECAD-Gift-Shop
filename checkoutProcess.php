@@ -8,8 +8,9 @@ include_once("mysqlConn.php");
 
 $shopperID = isset($_SESSION['shopperID']) ? $_SESSION['shopperID'] : 0;
 
+
 // Mark the order as placed
-// $updateOrderQuery = "UPDATE ShopCart SET OrderPlaced = 1 WHERE ShopperID = $shopperID AND OrderPlaced = 0";
+ //$updateOrderQuery = "UPDATE ShopCart SET OrderPlaced = 1 WHERE ShopperID = $shopperID AND OrderPlaced = 0";
 // mysqli_query($conn, $updateOrderQuery);
 
 if ($_POST) // Post Data received from the Shopping cart page.
@@ -100,6 +101,9 @@ if (isset($_GET["token"]) && isset($_GET["PayerID"])) {
     $paypal_data = '';
     $SubTotal = '';
 
+    
+    
+
     // Get all items from the shopping cart, concatenate to the variable $paypal_data
     // $_SESSION['Items'] is an associative array
     foreach ($_SESSION['Items'] as $key => $item) {
@@ -135,6 +139,8 @@ if (isset($_GET["token"]) && isset($_GET["PayerID"])) {
         // Automatically remove items from the shopping cart after payment
         //$deleteCartItemsQuery = "DELETE FROM ShopCartItem WHERE ShopCartID IN (SELECT ShopCartID FROM ShopCart WHERE ShopperID = $shopperID AND OrderPlaced = 0)";
         //mysqli_query($conn, $deleteCartItemsQuery);
+        // Assuming you have retrieved the product ID and quantity from the order
+    
         
         
 
@@ -144,4 +150,4 @@ if (isset($_GET["token"]) && isset($_GET["PayerID"])) {
         echo "<pre>" . print_r($httpParsedResponseAr) . "</pre>";
     }
 }
-?>
+
