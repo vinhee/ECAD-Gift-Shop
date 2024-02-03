@@ -159,7 +159,6 @@ if (!$result) {
         <a href="checkout.php" class="btn btn-success checkout-btn">Checkout</a>
         -->
         <?php include("checkout.php"); ?>
-        
         <br /><br />
     </div>
 
