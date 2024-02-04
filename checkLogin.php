@@ -2,6 +2,7 @@
 include("navbar.php");
 ?>
 <?php
+session_start();
 include_once("mysqlConn.php");
 $userEmail = $_POST["userEmail"]; // Get user input
 $userPassword = $_POST["userPassword"];
@@ -27,7 +28,7 @@ $stmt = $conn->prepare("SELECT * FROM Shopper WHERE Email = ?");
 if(!$validUser){
     echo "<h4 class='noStock'>Invalid Email or Password!</h4>";
     echo "<h5>Please try again.</h5>";
-    echo "<a href='signin.php'><button class='btn btn-primary' style='background-color: #C7B7A3;'>Try Again</button></a>";
+    echo "<a href='login.php'><button class='btn btn-primary' style='background-color: #352F44;'>Try Again</button></a>";
 }
 $conn->close();
 include("footer.php");

@@ -49,7 +49,9 @@ if(isset($_GET["searchProduct"]) && isset($_GET["minPrice"]) && isset($_GET["max
     $minPrice = $_GET["minPrice"];
     $maxPrice = $_GET["maxPrice"];
 
+    // Find products according to Title, Description or Specification
     $whereClause .= "(ProductTitle LIKE '%$searchProduct%' OR productDesc LIKE '%$searchProduct%' OR SpecVal LIKE '%$searchProduct%') ";
+    // Find Products according to Price Range, and checking products with offered price are during the offer time
     $whereClause .= "AND (Price BETWEEN $minPrice AND $maxPrice) OR ((OfferedPrice BETWEEN $minPrice AND $maxPrice) AND ($currDate BETWEEN OfferStartDate AND OfferEndDate))";
 
     $qry = "SELECT DISTINCT p.ProductTitle, p.Price, p.ProductID FROM product p

@@ -12,13 +12,7 @@
 </head>
 <body>
 <?php
-//session_start();
-$Content = "<div id='sign-up' class='d-flex align-items-center px-2' style='font-size: 22px;'>
-<a class='nav-link active' href='login.php' style='color:black;'><i class='fa-solid fa-user'></i></a>
-</div>
-<div class='d-flex align-items-center px-3' style='font-size: 20px; padding-right: 20px;'>
-<p class='navbarText' style='margin-bottom: 0px;'><b>Guest</b></p>
-</div>";
+session_start();
 if(isset($_SESSION["Name"])){
   $Content = "<div class='d-flex align-items-center px-3' style='font-size: 20px;'><i class='fa-solid fa-user'>
   </i><p class='navBarUser'>$_SESSION[Name]</p></div>
@@ -28,6 +22,14 @@ if(isset($_SESSION["Name"])){
   <div class='d-flex align-items-center px-3' style='font-size: 20px;'>
   <a class='nav-link active navbarText' href='logout.php'><p style='margin-bottom: 0px;'><b>Logout</b></p></a>
   </div>";
+}
+else{
+  $Content = "<div id='sign-up' class='d-flex align-items-center px-2' style='font-size: 22px;'>
+<a class='nav-link active' href='login.php' style='color:black;'><i class='fa-solid fa-user'></i></a>
+</div>
+<div class='d-flex align-items-center px-3' style='font-size: 20px; padding-right: 20px;'>
+<p class='navbarText' style='margin-bottom: 0px;'><b>Guest</b></p>
+</div>";
 }
 ?>
 
