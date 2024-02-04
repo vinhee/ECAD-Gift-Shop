@@ -47,8 +47,8 @@
             <div class="mb-3" style="text-align: right">
                 <label for="DeliveryMode" class="form-label">Delivery Mode </label>
                 <select name="DeliveryMode" id="DeliveryMode" class="form-select" onchange="updateCost()">
-                    <option value="Normal">Normal Delivery (Delivered within 2 days.)</option>
                     <option value="Express">Express Delivery (Delivered within 24 hours.)</option>
+                    <option value="Normal">Normal Delivery (Delivered within 2 days.)</option>
                 </select>
             </div>
             <div class="mb-3" id="costMessage" style="text-align: right">
@@ -67,10 +67,10 @@
             var deliveryMode = document.getElementById("DeliveryMode").value;
             var costMessage = document.getElementById("costMessage");
 
-            if (deliveryMode === "Normal") {
+            if (deliveryMode === "Express") {
+                costMessage.innerHTML = "Cost: $00.00 (Express Delivery)";
+            } else if (deliveryMode === "Normal") {
                 costMessage.innerHTML = "Cost: $5.00 (Normal Delivery)";
-            } else if (deliveryMode === "Express") {
-                costMessage.innerHTML = "Cost: $10.00 (Express Delivery)";
             }
         }
 
@@ -79,3 +79,4 @@
     </script>
 </body>
 </html>
+

@@ -12,6 +12,7 @@ include("navbar.php");
 
 <?php
 include_once("mysqlConn.php");
+
 $qry = "SELECT * FROM Product WHERE Offered = 1
         ORDER BY ProductTitle ASC" ;
 $result = mysqli_query($conn,$qry);
