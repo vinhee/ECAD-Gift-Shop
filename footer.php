@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=League+Spartan&display=swap" rel="stylesheet">
 </head>
 <body>
--->
+
 <footer class="py-3 my-4" style="background-color:#C7B7A3; color:black;">
     <ul class="nav justify-content-center border-bottom pb-3 mb-3">
       <li class="nav-item foot-text"><a href="index.php" class="nav-link px-2 text-body-secondary" style="color:black;">Home</a></li>
